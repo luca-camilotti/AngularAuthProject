@@ -1,0 +1,11 @@
+
+.my-toast-flexbox-container {
+	position: relative; 
+	/* min-height: 200px; */
+	margin-top: 80px;
+	/* background-color: #fefbd8; */
+}
+
+.toast-container {
+  position: absolute;
+}

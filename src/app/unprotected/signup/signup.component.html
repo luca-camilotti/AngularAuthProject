@@ -1,0 +1,36 @@
+
+
+        <div class="container-fluid">
+        
+        <h3>Please sign up to use all features</h3>
+
+        <form [formGroup]="myForm" (ngSubmit)="onSignup()">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input #email type="email" class="form-control" formControlName="email" id="email" aria-describedby="emailHelp" >
+              <!-- div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div -->
+              <!-- span>{{email.value}}</span -->              
+              <div *ngIf="!myForm.get('email').pristine && myForm.get('email').errors != null && myForm.get('email').hasError('noEmail')" class="alert alert-warning" role="alert">
+                Invalid email address
+              </div>  
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input #password type="password" class="form-control" formControlName="password" id="password">
+            </div>
+
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input #confirmPassword type="password" class="form-control" formControlName="confirmPassword" id="confirmPassword">
+                
+                <!-- div *ngIf="(!this.confirmPassword.pristine && this.confirmPassword.errors != null && this.confirmPassword.errors['passwordsNotMatch'])" class="alert alert-warning" role="alert" -->
+                <div *ngIf="!myForm.get('confirmPassword').pristine && myForm.get('confirmPassword').errors != null && myForm.get('confirmPassword').hasError('passwordsNotMatch')" class="alert alert-warning" role="alert">
+                  Warning: the two passwords do not match
+                </div>
+            
+            </div>
+            
+            <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid || (password.value != confirmPassword.value)" >Sign Up</button>
+        </form>
+
+      </div>
