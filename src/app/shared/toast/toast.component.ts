@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ErrorService } from 'src/app/services/error.service';
+import { MessageService } from 'src/app/services/message.service';
 import { LogService } from 'src/app/services/log.service';
 
 declare var $: any;  // to use jquery (put this in any component tha uses jquery)
@@ -18,7 +18,7 @@ export class ToastComponent implements OnInit {
   subscription: Subscription;
   // delay = 5000;
 
-  constructor(private errorMessage: ErrorService, private logger: LogService) {}
+  constructor(private errorMessage: MessageService, private logger: LogService) {}
 
   ngOnInit(): void {
     this.subscription = this.errorMessage.getMessage().subscribe(
