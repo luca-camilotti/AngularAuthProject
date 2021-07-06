@@ -8,6 +8,10 @@ import { Appstate } from '../models/appstate.model';
 export class StateService {
 
   // This service provide the current application state as observable
+  
+  // Here BehaviorSubject will be used as observable. Unlike Subject,
+  // BehaviorSubject will always return the last pushed value to subscriber,
+  // even if the subscription was made after the last value was pushed.
 
   constructor() { }
 

@@ -10,75 +10,33 @@ import { LogService } from './log.service';
 })
 export class ApiService {
 
-  constructor(private state:StateService, private readonly ApiUrl:string, private http:HttpClient, private logservice:LogService) {
-    this.ApiUrl = environment.apiUrl;
+  private readonly ApiUrl:string
+  
+  constructor(private state:StateService, private http:HttpClient, private logger:LogService) {
+    this.ApiUrl = environment.baseUrl+'/'+environment.apiPath;
+    this.logger.log('API Service: api url = '+this.ApiUrl)
   }
 
   /* Basic CRUD operation */
-
   // READ
-  private get(resource:string, auth_token:string=null): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
-    })
-    if(auth_token==null) {
-      this.logservice.log('API: Unauthenticated get to resource '+resource)
-      return this.http.get(this.ApiUrl+'/'+resource);
-    }
-    else {
-      this.logservice.log('API: get to resource '+resource)
-      return this.http.get(this.ApiUrl+'/'+resource, { headers: headers })
-    }
+  get(resource:string): Observable<any> {
+    this.logger.log('API: GET resource '+resource)
+    return this.http.get(this.ApiUrl+resource)    
   }
-
   // CREATE
-  private post(resource:string, value:string, auth_token:string=null): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
-    })
-    if(auth_token==null) {
-      this.logservice.log('API: Unauthenticated get to resource '+resource)
-      return this.http.post(this.ApiUrl+'/'+resource, value);
-    }
-    else {
-      this.logservice.log('API: get to resource '+resource)
-      return this.http.post(this.ApiUrl+'/'+resource, value, { headers: headers })
-    }
+  post(resource:string, value:string): Observable<any> {  
+    this.logger.log('API: POST '+value+' to resource '+resource)
+    return this.http.post(this.ApiUrl+resource, value)
   }
-
   // UPDATE
-  private put(resource:string, value:string, auth_token:string=null): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
-    })
-    if(auth_token==null) {
-      this.logservice.log('API: Unauthenticated get to resource '+resource)
-      return this.http.put(this.ApiUrl+'/'+resource, value);
-    }
-    else {
-      this.logservice.log('API: get to resource '+resource)
-      return this.http.put(this.ApiUrl+'/'+resource, value, { headers: headers })
-    }
+  put(resource:string, value:string): Observable<any> {
+    this.logger.log('API: PUT '+value+' to resource '+resource)
+    return this.http.put(this.ApiUrl+resource, value)    
   }
-
   // DELETE
-  private delete(resource:string, auth_token:string=null): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
-    })
-    if(auth_token==null) {
-      this.logservice.log('API: Unauthenticated get to resource '+resource)
-      return this.http.delete(this.ApiUrl+'/'+resource);
-    }
-    else {
-      this.logservice.log('API: get to resource '+resource)
-      return this.http.delete(this.ApiUrl+'/'+resource, { headers: headers })
-    }
+  delete(resource:string): Observable<any> {
+    this.logger.log('API: DELETE resource '+resource)
+    return this.http.delete(this.ApiUrl+resource)
   }
-
   /* END Basic CRUD operation */
 }

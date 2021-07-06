@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { ErrorService } from 'src/app/services/message.service';
+import { MessageService } from 'src/app/services/message.service';
 import { LogService } from '../../services/log.service';
 
 declare var $: any;  // to use jquery (put this in any component tha uses jquery)
@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
   errorMessage = '';
   emailPattern = '^\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$';
 
-    constructor(private errorService: ErrorService, private fb: FormBuilder, private logger: LogService) {
+    constructor(private messageService: MessageService, private fb: FormBuilder, private logger: LogService) {
     }
 
     /* Accessors (not callable as methods. just write this.Email without () for example..) */
@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit {
 
     onSignup() {
         // Error Message Testing:
-        this.errorService.sendMessage('Test Error!!!');
+        this.messageService.sendMessage('Testing message!!!');
     }
 
     ngOnInit(): any {

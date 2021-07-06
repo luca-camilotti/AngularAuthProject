@@ -9,6 +9,10 @@ import { SignupComponent } from './unprotected/signup/signup.component';
 import { ProtectedComponent } from './protected/protected/protected.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastComponent } from './shared/toast/toast.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthTokenInterceptorService } from './services/auth-token-interceptor.service';
+import { HttpErrorInterceptorService } from './services/http-error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -23,9 +27,13 @@ import { ToastComponent } from './shared/toast/toast.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
