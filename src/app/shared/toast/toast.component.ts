@@ -3,6 +3,12 @@ import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/message.service';
 import { LogService } from 'src/app/services/log.service';
 
+/*
+This component prints messages on a Bootstrap Toast.
+It subscribes to MessageService service. Every message is 
+printed automatically.
+*/
+
 declare var $: any;  // to use jquery (put this in any component tha uses jquery)
 
 @Component({

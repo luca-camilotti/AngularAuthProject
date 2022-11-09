@@ -16,7 +16,7 @@ export class ProtectedComponent implements OnInit {
   constructor(private api: ApiService, private UImessage: MessageService, private logger: LogService) { }
 
   ngOnInit(): void {
-    this.api.get('data/employee/10')    
+    this.api.get('data/employee/10')    // try 'data/what' and 'data/list'
     .pipe(
       catchError(err => of(err.error.message)) // return a Observable with a error message to display
     ) 
