@@ -13,7 +13,7 @@ export class ApiService {
   private readonly ApiUrl:string
   
   constructor(private state:StateService, private http:HttpClient, private logger:LogService) {
-    this.ApiUrl = environment.baseUrl+'/'+environment.apiPath;
+    this.ApiUrl = environment.baseUrl+environment.apiPath;
     this.logger.log('API Service: api url = '+this.ApiUrl)
   }
 
