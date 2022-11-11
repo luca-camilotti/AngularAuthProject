@@ -9,15 +9,18 @@ export const environment = {
   debug: true,
   // URL of development API
   baseUrl: 'http://localhost:8080',
-  apiPath: '/api/',
-  // Authentication resources:
-  loginPath: 'login',
-  registerPath: 'signup',
-  refreshtokenPath: 'token/refresh',
+  apiPath: '/api',
+  // API Authentication resources:
+  loginPath: '/login',
+  registerPath: '/signup',
+  refreshtokenPath: '/token/refresh',
 
   // Response code:
   tokenExpired: 401,  // auth token is expired
-  sessionExpired: 403  // also the refresh token is expired
+  sessionExpired: 403,  // also the refresh token is expired
+
+  // App paths:
+  appLogin : 'login',
 
 
 };

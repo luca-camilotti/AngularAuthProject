@@ -7,14 +7,17 @@ export const environment = {
   debug: false,
   // URL of production API:
   baseUrl: 'http://localhost:8080',
-  apiPath: '/api/',
+  apiPath: '/api',
   // Authentication resources:
-  loginPath: 'login',
-  registerPath: 'signup',
-  refreshtokenPath: 'token/refresh',
+  loginPath: '/login',
+  registerPath: '/signup',
+  refreshtokenPath: '/token/refresh',
 
   // Response code:
   tokenExpired: 401,  // auth token is expired
-  sessionExpired: 403  // also the refresh token is expired
+  sessionExpired: 403,  // also the refresh token is expired
+
+  // App paths:
+  appLogin : 'login',
 
 };
